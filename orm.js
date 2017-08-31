@@ -4,6 +4,7 @@ var Sequelize = require('sequelize'),
     config = require('./config')
 
 var db = {}
+var models = {}
 
 var sequelize = new Sequelize(config.DB_NAME, config.DB_USERNAME, config.DB_PW, {
     host: config.DB_HOST,
@@ -20,7 +21,7 @@ const modelsFolder = path.join(__dirname, "models")
 fs.readdirSync(modelsFolder).forEach((file) => {
     var pathModel = path.join(modelsFolder, file)
     var model = sequelize.import(pathModel)
-    db[model.name] = model
+    models[model.name] = model
     console.log(`Import models: ${model.name}`)
 })
 
@@ -33,5 +34,6 @@ Object.keys(db).forEach((modelName) => {
 
 db.Sequelize = Sequelize
 db.sequelize = sequelize
+db.models = models
 
 module.exports = db
