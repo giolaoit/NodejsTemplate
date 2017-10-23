@@ -26,9 +26,9 @@ fs.readdirSync(modelsFolder).forEach((file) => {
 })
 
 //Do associate modele
-Object.keys(db).forEach((modelName) => {
-    if ("associate" in db[modelName]) {
-        db[modelName].associate(db)
+Object.keys(models).forEach((modelName) => {
+    if ("associate" in models[modelName]) {
+        models[modelName].associate(models)
     }
 })
 
